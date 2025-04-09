@@ -13,7 +13,6 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || 3000;
 
-  const logger = app.get(WINSTON_MODULE_NEST_PROVIDER);
   await app.listen(port);
   console.log(`App is running on PORT:${port}`);
 }
