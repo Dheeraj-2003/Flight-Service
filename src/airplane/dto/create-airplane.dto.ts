@@ -8,6 +8,7 @@ export class CreateAirplaneDto{
     modelNumber:string;
 
     @IsNumber()
+    @IsNotEmpty()
     @Min(0)
     capacity: number;
 }
