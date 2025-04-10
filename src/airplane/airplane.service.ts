@@ -53,7 +53,6 @@ export class AirplaneService {
     async updateAirplane(id:number, data: Partial<Airplane>) : Promise<Airplane>{
         try {
             const response = await this.airplaneRepository.update(id,data);
-            console.log(response);
             return response;
         } catch (error) {
             if(error instanceof NotFoundException) throw new NotFoundException('Cannot fetch Airplane with given ID');

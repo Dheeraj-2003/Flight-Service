@@ -5,8 +5,9 @@ import { ConfigModule } from '@nestjs/config';
 import { WinstonModule } from 'nest-winston';
 import { winstonConfig } from './config/logger.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './config/typeorm.config';
+import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { AirplaneModule } from './airplane/airplane.module';
+import { CityModule } from './city/city.module';
 
 @Module({
   imports: [
@@ -14,8 +15,9 @@ import { AirplaneModule } from './airplane/airplane.module';
       isGlobal: true,
     }),
     WinstonModule.forRoot(winstonConfig),
-    TypeOrmModule.forRootAsync(typeOrmConfig),
-    AirplaneModule
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    AirplaneModule,
+    CityModule
   ],
   controllers: [AppController],
   providers: [AppService],

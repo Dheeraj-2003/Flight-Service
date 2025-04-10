@@ -1,7 +1,10 @@
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from "@nestjs/typeorm";
+import * as dotenv from 'dotenv';
 
-export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
+dotenv.config();
+
+export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
     imports: [ConfigModule],
     inject: [ConfigService],
     useFactory: async(configService:ConfigService) : Promise<TypeOrmModuleOptions> => ({
@@ -12,6 +15,6 @@ export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
         password: configService.get<string>('DB_PASSWORD') || 'postgres',
         database: configService.get<string>('DB_NAME') || 'testdb',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
+        synchronize: false,
     }),
 }
