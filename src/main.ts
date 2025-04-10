@@ -1,19 +1,34 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { Logger } from 'winston';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { AllExceptionFilter } from './common/filters/exception.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.setGlobalPrefix('api');
 
+  //Validation
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),);
+
   //config
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || 3000;
 
-  const logger = app.get(WINSTON_MODULE_NEST_PROVIDER);
+  //Filters
+  app.useGlobalFilters(new AllExceptionFilter())
+
+  //Interceptors
+  app.useGlobalInterceptors(new ResponseInterceptor())
   await app.listen(port);
   console.log(`App is running on PORT:${port}`);
 }
