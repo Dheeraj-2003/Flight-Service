@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { AirplaneModule } from './airplane/airplane.module';
 import { CityModule } from './city/city.module';
+import { AirportModule } from './airport/airport.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { CityModule } from './city/city.module';
     WinstonModule.forRoot(winstonConfig),
     TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     AirplaneModule,
-    CityModule
+    CityModule,
+    AirportModule
   ],
   controllers: [AppController],
   providers: [AppService],

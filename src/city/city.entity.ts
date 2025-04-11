@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
+import { Airport } from "src/airport/airport.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class City{
@@ -10,6 +11,9 @@ export class City{
 
     @CreateDateColumn()
     created_at: Date;
+
+    @OneToMany(()=> Airport, airport=> airport.city)
+    airports: Airport[]
 
     @UpdateDateColumn()
     updated_at: Date;
