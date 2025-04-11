@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Flight } from "src/flight/flight.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Airplane{
@@ -10,6 +11,9 @@ export class Airplane{
 
     @Column()
     capacity: number;
+
+    @OneToMany(() => Flight, flight => flight.airplane)
+    flights: Flight[];
 
     @CreateDateColumn()
     created_at: Date;

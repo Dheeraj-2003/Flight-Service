@@ -1,5 +1,6 @@
 import { City } from "src/city/city.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
+import { Flight } from "src/flight/flight.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Airport{
@@ -16,7 +17,17 @@ export class Airport{
     address:string;
 
     @ManyToOne(()=> City, city=> city.airports, {cascade: true, onDelete: 'CASCADE'})
-    city:City
+    @JoinColumn({ name: 'cityId' })
+    city:City;
+
+    @Column()
+    cityId: number;
+
+    @OneToMany(()=> Flight, flight=> flight.departureAirport)
+    departureFlights: Flight[];
+
+    @OneToMany(()=> Flight, flight=> flight.arrivalAirport)
+    arrivalFlights: Flight[];
 
     @CreateDateColumn()
     created_at: Date;

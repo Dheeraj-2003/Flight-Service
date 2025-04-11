@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPip
 import { CreateAirportDto } from './dto/create-airport.dto';
 import { Airport } from 'src/airport/airport.entity';
 import { AirportService } from './airport.service';
-import { CityService } from 'src/city/city.service';
 import { UpdateAirportDto } from 'src/airport/dto/update-airport.dto';
 
 @Controller('airport')
