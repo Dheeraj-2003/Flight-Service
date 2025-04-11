@@ -9,23 +9,23 @@ export class AirportRepository extends BaseRepository<Airport> {
     constructor(@InjectRepository(Airport) private readonly airplaneRepository: Repository<Airport>) {
         super(airplaneRepository)
     }
-    async findOneById(id:number): Promise<Airport | null>{
-        return await this.repo.findOne({
-            where: {
-                id:id,
-            }, 
-            relations: {
-                'city': true
-            } as any
-        })
-    }
-    async findAll(): Promise<Airport[]>{
-        return await this.repo.find(
-            {
-                relations: {
-                    'city': true,
-                }
-            }
-        );
-    }
+    // async findOneById(id:number): Promise<Airport | null>{
+    //     return await this.repo.findOne({
+    //         where: {
+    //             id:id,
+    //         }, 
+    //         relations: {
+    //             'city': true
+    //         } as any
+    //     })
+    // }
+    // async findAll(): Promise<Airport[]>{
+    //     return await this.repo.find(
+    //         {
+    //             relations: {
+    //                 'city': true,
+    //             }
+    //         }
+    //     );
+    // }
 }

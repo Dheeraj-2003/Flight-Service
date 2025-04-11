@@ -9,6 +9,7 @@ import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { AirplaneModule } from './airplane/airplane.module';
 import { CityModule } from './city/city.module';
 import { AirportModule } from './airport/airport.module';
+import { FlightModule } from './flight/flight.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { AirportModule } from './airport/airport.module';
     TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     AirplaneModule,
     CityModule,
-    AirportModule
+    AirportModule,
+    FlightModule
   ],
   controllers: [AppController],
   providers: [AppService],

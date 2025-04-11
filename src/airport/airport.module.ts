@@ -4,7 +4,6 @@ import { AirportService } from './airport.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Airport } from './airport.entity';
 import { City } from 'src/city/city.entity';
-import { CityService } from 'src/city/city.service';
 import { CityRepository } from 'src/city/city.repository';
 import { AirportRepository } from './airport.repository';
 

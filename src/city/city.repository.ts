@@ -9,14 +9,14 @@ export class CityRepository extends BaseRepository<City> {
     constructor(@InjectRepository(City) private readonly cityRepository: Repository<City>) {
         super(cityRepository)
     }
-    async findOneById(id:number): Promise<City | null>{
-        return await this.repo.findOne({
-            where: {
-                id:id,
-            }, 
-            relations: {
-                'airports': true
-            } as any
-        })
-    }
+    // async findOneById(id:number): Promise<City | null>{
+    //     return await this.repo.findOne({
+    //         where: {
+    //             id:id,
+    //         }, 
+    //         relations: {
+    //             'airports': true
+    //         } as any
+    //     })
+    // }
 }
