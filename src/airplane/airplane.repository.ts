@@ -9,4 +9,7 @@ export class AirplaneRepository extends BaseRepository<Airplane> {
     constructor(@InjectRepository(Airplane) private readonly airplaneRepository: Repository<Airplane>) {
         super(airplaneRepository)
     }
+    async existById(id:number): Promise<boolean>{
+        return await this.airplaneRepository.exists({where:{id:id}});
+    }
 }

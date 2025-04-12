@@ -9,6 +9,9 @@ export class CityRepository extends BaseRepository<City> {
     constructor(@InjectRepository(City) private readonly cityRepository: Repository<City>) {
         super(cityRepository)
     }
+    async existById(id:number): Promise<boolean>{
+        return await this.cityRepository.exists({where:{id:id}});
+    }
     // async findOneById(id:number): Promise<City | null>{
     //     return await this.repo.findOne({
     //         where: {
