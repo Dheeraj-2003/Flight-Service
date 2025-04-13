@@ -16,5 +16,6 @@ export class CreateAirportDto{
     address:string;
 
     @IsInt()
+    @IsNotEmpty()
     cityId:number
 }
