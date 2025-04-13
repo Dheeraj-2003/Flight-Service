@@ -13,7 +13,12 @@ export class FlightRepository extends BaseRepository<Flight> {
     async getFlightsByFilter(where : any, sort: any): Promise<Flight[]>{
         return this.flightRepository.find({
             where: where,
-            order: sort
+            order: sort,
+            relations:{
+                'airplane': true,
+                'arrivalAirport': true,
+                'departureAirport': true
+            }
         });
     }
 }

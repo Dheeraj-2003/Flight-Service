@@ -10,6 +10,7 @@ import { AirplaneModule } from './airplane/airplane.module';
 import { CityModule } from './city/city.module';
 import { AirportModule } from './airport/airport.module';
 import { FlightModule } from './flight/flight.module';
+import { SeatModule } from './seat/seat.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { FlightModule } from './flight/flight.module';
     AirplaneModule,
     CityModule,
     AirportModule,
-    FlightModule
+    FlightModule,
+    SeatModule
   ],
   controllers: [AppController],
   providers: [AppService],

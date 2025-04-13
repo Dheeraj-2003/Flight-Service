@@ -2,7 +2,6 @@
 
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-import { Airplane } from 'src/airplane/airplane.entity';
 
 dotenv.config();
 
@@ -15,5 +14,5 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || 'testdb',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: ['src/database/migrations/*.ts'],
-  synchronize: false, // always false for production
+  synchronize: false, 
 });
