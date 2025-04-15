@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { FlightService } from './flight.service';
 import { Flight } from './flight.entity';
 import { CreateFlightDto } from './dto/create-flight.dto';
 import { QueryFlightDto } from './dto/query-flight.dto';
+import { UpdateSeatsDto } from './dto/update-seats.dto';
 
 @Controller('flight')
 export class FlightController {
@@ -10,7 +11,6 @@ export class FlightController {
     
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    @UsePipes(ValidationPipe)
     async createFlight(@Body() createFlightDto: CreateFlightDto) {
         return this.flightService.createFlight(createFlightDto);
     }
@@ -31,5 +31,9 @@ export class FlightController {
     async deleteFlightById(@Param('id', ParseIntPipe) id: number){
         await this.flightService.deleteFlightById(id);
         return {'message': "Flight deleted succesfully"}
+    }
+    @Patch(':id/seats')
+    async updateSeats(@Body() updateSeatsDto: UpdateSeatsDto, @Param('id', ParseIntPipe) id:number){
+        return await this.flightService.updateTotalSeats(id,updateSeatsDto);
     }
 }

@@ -1,5 +1,3 @@
-// src/config/typeorm-migrations.config.ts
-
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 

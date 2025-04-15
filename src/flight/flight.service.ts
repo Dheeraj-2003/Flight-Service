@@ -8,6 +8,7 @@ import { QueryFlightDto } from './dto/query-flight.dto';
 import { isEmpty } from 'class-validator';
 import { Between, MoreThanOrEqual } from 'typeorm';
 import { string } from 'joi';
+import { UpdateSeatsDto } from './dto/update-seats.dto';
 
 @Injectable()
 export class FlightService {
@@ -91,6 +92,18 @@ export class FlightService {
                 throw error;
             }
             throw new InternalServerErrorException('Cannot fetch Flight with given ID')
+        }
+    }
+    async updateTotalSeats(id:number,updateSeatsDto: UpdateSeatsDto): Promise<Flight | null>{
+        try {
+            const response =  await this.flightRepository.updateRemainingSeats(id,updateSeatsDto.seats, updateSeatsDto.dec);
+            return response;
+        } catch (error) {
+            if(error instanceof NotFoundException) throw new NotFoundException('Cannot fetch Flight with given ID');
+            else if(error instanceof HttpException){
+                throw error;
+            }
+            throw new InternalServerErrorException('Cannot update seats for flight with given ID')
         }
     }
     async deleteFlightById(id: number) : Promise<void>{
